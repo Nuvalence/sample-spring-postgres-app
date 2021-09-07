@@ -16,7 +16,7 @@ Sample spring boot application connecting to a Postgres DB
 
 1. Start the containers using docker compose 
 ```shell
-    docker compose up
+    docker-compose up
 ```
 
 1. Use the provided [Postman collection](./postman) to hit the application endpoints
