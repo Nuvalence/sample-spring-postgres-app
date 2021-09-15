@@ -1,0 +1,49 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.4'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'com.google.cloud.tools.jib' version '2.8.0'
+}
+
+group = 'io.nuvalence'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.flywaydb:flyway-core:7.14.1'
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+	// https://mvnrepository.com/artifact/io.r2dbc/r2dbc-postgresql
+	implementation 'io.r2dbc:r2dbc-postgresql:0.8.8.RELEASE'
+	// https://mvnrepository.com/artifact/org.postgresql/postgresql
+	implementation 'org.postgresql:postgresql:42.2.23'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+	useJUnitPlatform()
+}
+
+jib {
+	from {
+		image = 'openjdk:11.0.10-jdk-slim'
+	}
+	to {
+		image = 'nuvalence/sample'
+		tags = ['latest']
+	}
+	container {
+		creationTime = "USE_CURRENT_TIMESTAMP"
+		ports = ['8080']
+	}
+}
+
+tasks.jib.dependsOn(tasks.build)
+tasks.jibDockerBuild.dependsOn(tasks.build)
