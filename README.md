@@ -1,4 +1,4 @@
-# Cloud Engineering Sample App
+# Sample Sprint Postgres App
 
 Sample spring boot application connecting to a Postgres DB
 
