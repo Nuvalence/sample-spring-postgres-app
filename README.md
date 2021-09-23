@@ -1,4 +1,4 @@
-# Sample Sprint Postgres App
+# Sample Spring Postgres App
 
 Sample spring boot application connecting to a Postgres DB
 
