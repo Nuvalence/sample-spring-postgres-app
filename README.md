@@ -1,6 +1,13 @@
 # Sample Spring Postgres App
 
-Sample spring boot application connecting to a Postgres DB
+Sample spring boot application connecting to a Postgres DB.
+
+# Features
+
+* HTTP server listens on port 8080
+* CRUD API exposed at `/customer`
+* Prometheus metrics exposed at `/actuator/prometheus`
+* Liveness and readiness information exposed at `/actuator/health/liveness` and `/actuator/health/readiness`
 
 # Local setup
 
