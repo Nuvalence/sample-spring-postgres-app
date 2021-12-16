@@ -9,9 +9,9 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ build-push-action ]
+    branches: [ main ]
   pull_request:
-    branches: [ build-push-action ]
+    branches: [ main ]
 
 env:
   REGISTRY: ghcr.io
@@ -28,13 +28,19 @@ jobs:
       with:
         java-version: '11'
         distribution: 'adopt'
+
+  push:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu
+    steps:
     - name: Log in to the Container registry
       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
       with:
         registry: ${{ env.REGISTRY }}
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-    - name: Build with Gradle
+
+    - name: Push container image
       uses: gradle/gradle-build-action@4137be6a8bf7d7133955359dbd952c0ca73b1021
       with:
         arguments: jib --image=${{ env.REGISTRY }}/nuvalence/sample-spring-postgres-app
