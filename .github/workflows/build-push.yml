@@ -15,7 +15,6 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build:
@@ -38,4 +37,4 @@ jobs:
     - name: Build with Gradle
       uses: gradle/gradle-build-action@4137be6a8bf7d7133955359dbd952c0ca73b1021
       with:
-        arguments: jib --image=${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
+        arguments: jib --image=${{ env.REGISTRY }}/nuvalence/sample-spring-postgres-app
