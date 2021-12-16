@@ -35,6 +35,7 @@ jobs:
 
   push:
     if: ${{ github.ref == 'refs/heads/main' }}
+    needs: build
     runs-on: ubuntu
     steps:
     - name: Log in to the Container registry
