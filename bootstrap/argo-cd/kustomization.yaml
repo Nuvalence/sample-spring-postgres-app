@@ -14,4 +14,4 @@ configMapGenerator:
 kind: Kustomization
 namespace: argocd
 resources:
-- github.com/argoproj/argo-workflows/tree/v3.3.10/manifests/cluster-install?ref=v3.3.10
+- github.com/argoproj-labs/argocd-autopilot/manifests/base?ref=v0.4.8
