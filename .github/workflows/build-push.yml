@@ -9,18 +9,18 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, qa, dev ]
+    tags:
+      - 'v*.*.*'
   pull_request:
-    branches: [ main ]
+    branches: [ main, qa, dev ]
 
 env:
-  REGISTRY: ghcr.io
+  REGISTRY: docker.com
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 11
@@ -48,10 +48,10 @@ jobs:
       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
       with:
         registry: ${{ env.REGISTRY }}
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Push container image
       uses: gradle/gradle-build-action@4137be6a8bf7d7133955359dbd952c0ca73b1021
       with:
-        arguments: jib --image=${{ env.REGISTRY }}/nuvalence/sample-spring-postgres-app
+        arguments: jib --image=${{ env.REGISTRY }}/dahendel/nuvalence-app

@@ -1,0 +1,76 @@
+version: 3
+automerge: true
+delete_source_branch_on_merge: false
+projects:
+  - name: eks
+    branch: dev
+    dir: terraform/eks
+    workspace: dev-nuvalence
+    execution_order_group: 0
+    delete_source_branch_on_merge: false
+    autoplan:
+      enabled: true
+      when_modified: ["terraform/eks/vars.auto.tfvars"]
+    terraform_version: 1.3.2
+    apply_requirements: [ "approved", "mergeable" ]
+    workflow: apply
+  - name: eks
+    branch: qa
+    dir: terraform/eks
+    workspace: qa-nuvalence
+    execution_order_group: 0
+    delete_source_branch_on_merge: false
+    autoplan:
+      enabled: true
+      when_modified: ["terraform/eks/vars.auto.tfvars"]
+    terraform_version: 1.3.2
+    apply_requirements: [ "approved", "mergeable" ]
+    workflow: apply
+  - name: eks
+    branch: main
+    dir: terraform/eks
+    workspace: prod-nuvalence
+    execution_order_group: 0
+    delete_source_branch_on_merge: false
+    autoplan:
+      enabled: true
+      when_modified: ["terraform/eks/vars.auto.tfvars"]
+    terraform_version: 1.3.2
+    apply_requirements: [ "approved", "mergeable" ]
+    workflow: apply
+  - name: eks
+    branch: dev
+    dir: terraform/eks
+    workspace: dev-nuvalence
+    execution_order_group: 0
+    delete_source_branch_on_merge: false
+    autoplan:
+      enabled: true
+      when_modified: ["terraform/eks/vars.auto.tfvars"]
+    terraform_version: 1.3.2
+    apply_requirements: [ "approved", "mergeable" ]
+    workflow: apply
+  - name: eks
+    branch: qa
+    dir: terraform/eks
+    workspace: qa-nuvalence
+    execution_order_group: 0
+    delete_source_branch_on_merge: false
+    autoplan:
+      enabled: true
+      when_modified: ["terraform/eks/vars.auto.tfvars"]
+    terraform_version: 1.3.2
+    apply_requirements: [ "approved", "mergeable" ]
+    workflow: apply
+  - name: eks
+    branch: main
+    dir: terraform/eks
+    workspace: prod-nuvalence
+    execution_order_group: 0
+    delete_source_branch_on_merge: false
+    autoplan:
+      enabled: true
+      when_modified: ["terraform/eks/vars.auto.tfvars"]
+    terraform_version: 1.3.2
+    apply_requirements: [ "approved", "mergeable" ]
+    workflow: apply

@@ -1,36 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.27.0 (HEAD)
-  creationTimestamp: null
   labels:
-    io.kompose.service: service
+    app: service
   name: service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: service
-  strategy: {}
+      app: service
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert
-        kompose.version: 1.27.0 (HEAD)
-      creationTimestamp: null
       labels:
-        io.kompose.service: service
+        app: service
     spec:
+      serviceAccountName:  {{ include "sample-spring-postgres-app.serviceAccountName" . }}
       containers:
         - env:
             - name: SPRING_PROFILES_ACTIVE
               value: test
-          image: nuvalence/sample
+          image: {{ .Values.service.image.repository }}:{{ .Values.service.image.tag }}
           name: service
           ports:
             - containerPort: 8080
           resources: {}
       restartPolicy: Always
-status: {}
