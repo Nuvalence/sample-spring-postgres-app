@@ -34,18 +34,25 @@ locals {
 
   defaults = merge(
     local.aws_lb_controller_defaults,
-    local.aws_lb_controller_defaults,
     local.aws_ebs_csi_driver_defaults,
     local.external_dns_defaults,
     {
-      "${terraform.workspace}-apps" = {
+      "${local.cluster_name}-apps" = {
         enabled        = var.create_bootstrap_app_of_apps
         argo_app_repo  = var.global_git_repo
+        app_name       = "${local.cluster_name}-apps"
+        argo_namespace = "argocd"
+        app_namespace  = "argocd"
         namespace      = "argocd"
         filename       = join("/", [local.local_apps_filename_prefix, "${local.cluster_name}-app-of-apps.yaml"])
         name           = "${local.cluster_name}-app-of-apps"
-        is_helm_chart  = false
         path           = local.apps_path
+        target_revision = terraform.workspace == "prod" ? "main" : terraform.workspace
+        is_helm_chart  = false
+        values_files_path_prefix = ""
+        values_defaults_filename = ""
+        values_overrides_filename = ""
+        automated_update = true
         argo_auto_sync = true
         recurse_dir    = true
       }
@@ -59,6 +66,7 @@ locals {
         source_helm_repo = "https://argoproj.github.io/argo-helm"
         chart_version    = "4.9.4"
         argo_auto_sync   = true
+        target_revision = terraform.workspace == "prod" ? "main" : terraform.workspace
         recurse_dir      = false
     }, var.argocd_context) },
     {
@@ -68,6 +76,7 @@ locals {
         namespace        = "nginx-ingress-system"
         name             = "ingress-nginx"
         source_helm_repo = "https://kubernetes.github.io/ingress-nginx"
+        target_revision = terraform.workspace == "prod" ? "main" : terraform.workspace
         chart_version    = "4.1.4"
         argo_auto_sync   = true
     }, var.ingress_nginx_context) },
@@ -79,6 +88,7 @@ locals {
         namespace        = "cert-manager"
         source_helm_repo = "https://charts.jetstack.io"
         chart_version    = "v1.7.1"
+        target_revision = terraform.workspace == "prod" ? "main" : terraform.workspace
         argo_auto_sync   = true
       }, var.cert_manager_context)
     },
@@ -90,6 +100,7 @@ locals {
         name             = "rustrial-aws-eks-iam-auth-controller"
         source_helm_repo = "https://rustrial.github.io/aws-eks-iam-auth-controller"
         chart_version    = "0.1.7"
+        target_revision = terraform.workspace == "prod" ? "main" : terraform.workspace
         argo_auto_sync   = true
       }, var.iam_auth_controller_context)
     }
@@ -257,7 +268,7 @@ EOF
 
   enabled_apps = {
     for app, config in local.defaults :
-    app => {
+    app => merge({
       argo_app_repo           = config.argo_app_repo
       filename                = lookup(config, "filename", "${local.local_apps_filename_prefix}/${app}.yaml")
       name                    = app
@@ -269,7 +280,7 @@ EOF
       auto_update             = lookup(config, "argo_auto_sync", true)
       recurse_dir             = lookup(config, "recurse_dir", false)
       additional_sync_options = lookup(config, "additional_sync_options", null)
-    }
+    }, config)
     if config.enabled
   }
 

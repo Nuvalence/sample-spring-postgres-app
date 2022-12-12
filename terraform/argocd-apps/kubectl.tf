@@ -1,3 +1,3 @@
 resource "kubectl_manifest" "app_of_apps" {
-  yaml_body = file(join("/", [local.local_apps_filename_prefix, "${local.cluster_name}-app-of-apps.yaml"]))
+  yaml_body = templatefile("modules/terraform-file-generator/templates/argo-app.yaml", local.enabled_apps["${local.cluster_name}-apps"])
 }

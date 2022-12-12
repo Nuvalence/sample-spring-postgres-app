@@ -1,11 +1,11 @@
-# Generated ArgoCD Application for Helm Chart dev-apps
+# Generated ArgoCD Application for Helm Chart dev-nuvalence-apps
 #
 # DO NOT EDIT!  Your changes will be overwritten by Terraform.
 #
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: dev-apps
+  name: dev-nuvalence-apps
   namespace: argocd
 spec:
   destination:
@@ -14,8 +14,8 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/dahendel/sample-spring-postgres-app'
-    targetRevision: 'HEAD'
-    path: charts/dev-apps
+    targetRevision: 'dev'
+    path: apps/dev
     directory:
       recurse: true
   syncPolicy:

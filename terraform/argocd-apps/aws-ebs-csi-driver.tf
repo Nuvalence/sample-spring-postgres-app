@@ -5,6 +5,7 @@ locals {
       argo_app_repo    = var.global_git_repo
       namespace        = "kube-system"
       name             = "aws-ebs-csi-driver"
+      target_revision = terraform.workspace == "prod" ? "main" : terraform.workspace
       source_helm_repo = "https://kubernetes-sigs.github.io/aws-ebs-csi-driver"
       chart_version    = "2.8.0"
       argo_auto_sync   = true

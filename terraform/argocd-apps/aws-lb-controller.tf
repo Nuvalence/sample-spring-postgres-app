@@ -6,6 +6,7 @@ locals {
       name             = "aws-load-balancer-controller"
       namespace        = "alb-controller-system"
       source_helm_repo = "https://aws.github.io/eks-charts"
+      target_revision = terraform.workspace == "prod" ? "main" : terraform.workspace
       chart_version    = "1.4.2"
       argo_auto_sync   = true
     }, var.aws_lb_controller_context)

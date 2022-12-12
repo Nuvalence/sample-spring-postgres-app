@@ -6,6 +6,7 @@ locals {
       namespace        = "external-dns"
       name             = "external-dns"
       source_helm_repo = "https://charts.bitnami.com/bitnami"
+      target_revision = terraform.workspace == "prod" ? "main" : terraform.workspace
       chart_version    = "6.5.5"
       argo_auto_sync   = true
     }, var.external_dns_context)

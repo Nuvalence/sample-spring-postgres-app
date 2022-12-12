@@ -14,7 +14,7 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/dahendel/sample-spring-postgres-app'
-    targetRevision: 'HEAD'
+    targetRevision: 'dev'
     path: charts/aws-load-balancer-controller
     helm:
       ignoreMissingValueFiles: true
