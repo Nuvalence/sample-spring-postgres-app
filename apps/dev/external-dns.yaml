@@ -15,7 +15,7 @@ spec:
   source:
     repoURL: 'https://github.com/dahendel/sample-spring-postgres-app'
     targetRevision: 'dev'
-    path: charts/external-dns
+    path: bootstrap/charts/dev/external-dns
     helm:
       ignoreMissingValueFiles: true
       valueFiles:

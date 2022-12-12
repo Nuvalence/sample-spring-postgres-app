@@ -15,7 +15,7 @@ spec:
   source:
     repoURL: 'https://github.com/dahendel/sample-spring-postgres-app'
     targetRevision: 'dev'
-    path: charts/ingress-nginx
+    path: bootstrap/charts/dev/ingress-nginx
     helm:
       ignoreMissingValueFiles: true
       valueFiles:

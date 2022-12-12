@@ -15,7 +15,7 @@ spec:
   source:
     repoURL: 'https://github.com/dahendel/sample-spring-postgres-app'
     targetRevision: 'dev'
-    path: charts/rustrial-aws-eks-iam-auth-controller
+    path: bootstrap/charts/dev/rustrial-aws-eks-iam-auth-controller
     helm:
       ignoreMissingValueFiles: true
       valueFiles:
