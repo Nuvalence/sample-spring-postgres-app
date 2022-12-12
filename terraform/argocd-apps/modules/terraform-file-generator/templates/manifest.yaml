@@ -1,0 +1,18 @@
+# Generated Manifest for resource ${ name }
+#
+# DO NOT EDIT!  Your changes will be overwritten by Terraform.
+#
+apiVersion: "${ api_version }"
+kind: "${ kind }"
+metadata:
+  name: "${ name }"
+%{~ if namespace != null }
+  namespace: ${ namespace }%{ endif }
+%{~ if length(annotations) > 0 }
+  annotations:%{~ for k, v in annotations }
+    "${ k }": "${ v }"%{ endfor }%{ endif }
+%{~ if length(labels) > 0 }
+  labels:%{ for k, v in labels }
+    "${ k }": "${ v }"%{ endfor }%{ endif }
+spec:
+${ spec_contents }

@@ -1,0 +1,16 @@
+# Generated Helm Chart for rustrial-aws-eks-iam-auth-controller
+#
+# Description: Wrapper chart for rustrial-aws-eks-iam-auth-controller
+#
+# DO NOT EDIT!  Your changes will be overwritten by Terraform.
+#
+apiVersion: v2
+name: "rustrial-aws-eks-iam-auth-controller"
+description: |
+  Wrapper chart for rustrial-aws-eks-iam-auth-controller
+type: application
+version: "0.1.7"
+dependencies:
+  - name: "rustrial-aws-eks-iam-auth-controller"
+    version: "0.1.7"
+    repository: "https://rustrial.github.io/aws-eks-iam-auth-controller"

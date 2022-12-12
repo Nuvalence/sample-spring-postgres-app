@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: service
-  name: service
+    app: {{- include "sample-spring-postgres-app.fullname" . -}}
+  name: {{- include "sample-spring-postgres-app.fullname" . -}}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: service
+      app: {{- include "sample-spring-postgres-app.fullname" . -}}
   template:
     metadata:
       labels:
-        app: service
+        app: {{- include "sample-spring-postgres-app.fullname" . -}}
     spec:
       serviceAccountName:  {{ include "sample-spring-postgres-app.serviceAccountName" . }}
       containers:
@@ -20,7 +20,7 @@ spec:
             - name: SPRING_PROFILES_ACTIVE
               value: test
           image: {{ .Values.service.image.repository }}:{{ .Values.service.image.tag }}
-          name: service
+          name: {{- include "sample-spring-postgres-app.fullname" . -}}
           ports:
             - containerPort: 8080
           resources: {}

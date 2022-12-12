@@ -1,0 +1,16 @@
+# Generated Helm Chart for external-dns
+#
+# Description: Wrapper chart for external-dns
+#
+# DO NOT EDIT!  Your changes will be overwritten by Terraform.
+#
+apiVersion: v2
+name: "external-dns"
+description: |
+  Wrapper chart for external-dns
+type: application
+version: "6.5.5"
+dependencies:
+  - name: "external-dns"
+    version: "6.5.5"
+    repository: "https://charts.bitnami.com/bitnami"

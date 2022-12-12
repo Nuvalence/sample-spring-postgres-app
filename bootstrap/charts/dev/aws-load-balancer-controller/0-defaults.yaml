@@ -1,0 +1,16 @@
+# Generated Helm Chart default values yaml for aws-load-balancer-controller
+#
+# DO NOT EDIT!  Your changes will be overwritten by Terraform.
+#
+# This helm values file contains values as defined by the Terraform configuration.  If you wish
+# to edit the values for the chart "aws-load-balancer-controller", please edit the file "9-overrides.yaml" in
+# this directory.
+#
+"aws-load-balancer-controller":
+  "clusterName": "dev-nuvalence"
+  "logLevel": "debug"
+  "region": "us-east-1"
+  "serviceAccount":
+    "annotations":
+      "eks.amazonaws.com/role-arn": "arn:aws:iam::842540966972:role/dev-nuvalence-alb-irsa"
+      "name": "aws-load-balancer-controller"

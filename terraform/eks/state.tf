@@ -1,6 +1,7 @@
 terraform {
   backend "s3" {
-    bucket = "guru-nuvalence-state"
+    region = "us-east-1"
+    bucket = "nuvalence-eks-state"
     key = "terraform.tfstate"
     dynamodb_table = "terraform-locks"
   }

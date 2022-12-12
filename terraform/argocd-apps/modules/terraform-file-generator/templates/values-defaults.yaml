@@ -1,0 +1,9 @@
+# Generated Helm Chart default values yaml for ${ chart_name }
+#
+# DO NOT EDIT!  Your changes will be overwritten by Terraform.
+#
+# This helm values file contains values as defined by the Terraform configuration.  If you wish
+# to edit the values for the chart "${ chart_name }", please edit the file "${ values_overrides_filename }" in
+# this directory.
+#
+${ content }

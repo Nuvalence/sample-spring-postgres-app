@@ -1,0 +1,18 @@
+# Generated Helm Chart for ${ name }
+#
+# Description: ${ description }
+#
+# DO NOT EDIT!  Your changes will be overwritten by Terraform.
+#
+apiVersion: v2
+name: "${ name }"
+description: |
+  ${ description }
+type: ${ type }
+version: "${ chart_version }"
+%{ if app_version != null }appVersion: "${ app_version }"
+%{ endif ~}
+%{ if length(dependencies) > 0 }dependencies:%{ for dep in dependencies }
+  - name: "${ dep["name"] }"
+    version: "${ dep["version"] }"
+    repository: "${ dep["repository"] }"%{ endfor }%{ endif }

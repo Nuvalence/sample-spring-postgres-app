@@ -1,0 +1,9 @@
+# Generated Helm Chart default values yaml for rustrial-aws-eks-iam-auth-controller
+#
+# DO NOT EDIT!  Your changes will be overwritten by Terraform.
+#
+# This helm values file contains values as defined by the Terraform configuration.  If you wish
+# to edit the values for the chart "rustrial-aws-eks-iam-auth-controller", please edit the file "9-overrides.yaml" in
+# this directory.
+#
+"rustrial-aws-eks-iam-auth-controller": {}

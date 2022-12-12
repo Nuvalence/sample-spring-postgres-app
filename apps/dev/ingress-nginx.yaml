@@ -1,0 +1,31 @@
+# Generated ArgoCD Application for Helm Chart ingress-nginx
+#
+# DO NOT EDIT!  Your changes will be overwritten by Terraform.
+#
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingress-nginx
+  namespace: argocd
+spec:
+  destination:
+    namespace: nginx-ingress-system
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    repoURL: 'https://github.com/dahendel/sample-spring-postgres-app'
+    targetRevision: 'HEAD'
+    path: charts/ingress-nginx
+    helm:
+      ignoreMissingValueFiles: true
+      valueFiles:
+        - '0-defaults.yaml'
+        - '9-overrides.yaml'
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+
+    automated:
+      prune: true
+      selfHeal: true

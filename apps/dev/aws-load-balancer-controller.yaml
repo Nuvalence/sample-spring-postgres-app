@@ -1,0 +1,31 @@
+# Generated ArgoCD Application for Helm Chart aws-load-balancer-controller
+#
+# DO NOT EDIT!  Your changes will be overwritten by Terraform.
+#
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aws-load-balancer-controller
+  namespace: argocd
+spec:
+  destination:
+    namespace: alb-controller-system
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    repoURL: 'https://github.com/dahendel/sample-spring-postgres-app'
+    targetRevision: 'HEAD'
+    path: charts/aws-load-balancer-controller
+    helm:
+      ignoreMissingValueFiles: true
+      valueFiles:
+        - '0-defaults.yaml'
+        - '9-overrides.yaml'
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+
+    automated:
+      prune: true
+      selfHeal: true

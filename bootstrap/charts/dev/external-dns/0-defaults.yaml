@@ -1,0 +1,27 @@
+# Generated Helm Chart default values yaml for external-dns
+#
+# DO NOT EDIT!  Your changes will be overwritten by Terraform.
+#
+# This helm values file contains values as defined by the Terraform configuration.  If you wish
+# to edit the values for the chart "external-dns", please edit the file "9-overrides.yaml" in
+# this directory.
+#
+"external-dns":
+  "LogLevel": "info"
+  "domainFilters":
+  - ""
+  "interval": "5m"
+  "policy": "sync"
+  "provider": "aws"
+  "publishInternalServices": true
+  "registry": "txt"
+  "serviceAccount":
+    "annotations":
+      "eks.amazonaws.com/role-arn": "arn:aws:iam::842540966972:role/dev-nuvalence-external-dns-irsa"
+      "name": "external-dns"
+  "sources":
+  - "service"
+  - "ingress"
+  "triggerLoopOnEvent": true
+  "txtOwnerId": "dev-nuvalence"
+  "txtPrefix": "external-dns"

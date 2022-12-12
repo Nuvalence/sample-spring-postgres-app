@@ -1,0 +1,10 @@
+# Generated Helm Chart default values yaml for cert-manager
+#
+# DO NOT EDIT!  Your changes will be overwritten by Terraform.
+#
+# This helm values file contains values as defined by the Terraform configuration.  If you wish
+# to edit the values for the chart "cert-manager", please edit the file "9-overrides.yaml" in
+# this directory.
+#
+"cert-manager":
+  "installCRDs": true

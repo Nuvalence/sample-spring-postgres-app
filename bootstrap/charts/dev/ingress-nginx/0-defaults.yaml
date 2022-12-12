@@ -1,0 +1,24 @@
+# Generated Helm Chart default values yaml for ingress-nginx
+#
+# DO NOT EDIT!  Your changes will be overwritten by Terraform.
+#
+# This helm values file contains values as defined by the Terraform configuration.  If you wish
+# to edit the values for the chart "ingress-nginx", please edit the file "9-overrides.yaml" in
+# this directory.
+#
+"ingress-nginx":
+  "controller":
+    "service":
+      "annotations":
+        "service.beta.kubernetes.io/aws-load-balancer-backend-protocol": "ssl"
+        "service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout": "60"
+        "service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled": "true"
+        "service.beta.kubernetes.io/aws-load-balancer-healthcheck-port": "443"
+        "service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol": "TCP"
+        "service.beta.kubernetes.io/aws-load-balancer-internal": "false"
+        "service.beta.kubernetes.io/aws-load-balancer-nlb-target-type": "instance"
+        "service.beta.kubernetes.io/aws-load-balancer-scheme": "internet-facing"
+        "service.beta.kubernetes.io/aws-load-balancer-ssl-negotiation-policy": "ELBSecurityPolicy-TLS13-1-2-2021-06"
+        "service.beta.kubernetes.io/aws-load-balancer-subnets": "subnet-02c17eb108be0df72,subnet-0b0482190f7dbae8c"
+        "service.beta.kubernetes.io/aws-load-balancer-type": "nlb"
+      "loadBalancerSourceRanges": null

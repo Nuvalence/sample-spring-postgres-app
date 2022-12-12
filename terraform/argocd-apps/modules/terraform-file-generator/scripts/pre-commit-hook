@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -e
+
+# execute terraform validate
+terraform validate \
+  .
+
+# execute terraform fmt
+terraform fmt \
+    -list=true \
+    -diff \
+    -recursive \
+    . \
+  && git add \
+    --update
+
+#tfsec --soft-fail .
+#tflint
+
+# execute terraform-docs
+terraform-docs . && git add --update

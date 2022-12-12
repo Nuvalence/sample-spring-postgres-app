@@ -1,0 +1,39 @@
+# Generated ArgoCD Application for Helm Chart ${ app_name }
+#
+# DO NOT EDIT!  Your changes will be overwritten by Terraform.
+#
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ${ app_name }
+  namespace: ${argo_namespace}
+spec:
+  destination:
+%{~ if app_namespace != null }
+    namespace: ${ app_namespace }%{ endif }
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    repoURL: '${ argo_app_repo }'
+    targetRevision: '${ target_revision }'
+    path: ${path}
+%{~ if recurse_dir }
+    directory:
+      recurse: ${ recurse_dir }%{ endif }
+%{~ if is_helm_chart }
+    helm:
+      ignoreMissingValueFiles: true
+      valueFiles:
+        - %{if values_files_path_prefix != ""}'${ values_files_path_prefix }/${ values_defaults_filename }'%{ else }'${ values_defaults_filename }'%{ endif }
+        - %{if values_files_path_prefix != ""}'${ values_files_path_prefix }/${ values_overrides_filename }'%{ else }'${ values_overrides_filename }'%{ endif }%{ endif }
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+      %{~ if additional_sync_options != null }
+      %{~ for opt in additional_sync_options  }
+      - ${opt}%{~ endfor }%{~ endif }
+%{~ if automated_update }
+    automated:
+      prune: true
+      selfHeal: true%{ endif }

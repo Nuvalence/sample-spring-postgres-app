@@ -1,0 +1,16 @@
+# Generated Helm Chart for aws-load-balancer-controller
+#
+# Description: Wrapper chart for aws-load-balancer-controller
+#
+# DO NOT EDIT!  Your changes will be overwritten by Terraform.
+#
+apiVersion: v2
+name: "aws-load-balancer-controller"
+description: |
+  Wrapper chart for aws-load-balancer-controller
+type: application
+version: "1.4.2"
+dependencies:
+  - name: "aws-load-balancer-controller"
+    version: "1.4.2"
+    repository: "https://aws.github.io/eks-charts"

@@ -1,0 +1,7 @@
+# {{chart_name}} values overrides file
+#
+# Enter any / all customer-specific values into this file.  Any values entered here will supersede
+# values in 0-defaults.yaml and the chart's own values.yaml file(s).
+#
+"${chart_name}": %{ if override_values == null }{}%{ else }
+  ${ indent(2, replace(yamlencode(override_values), "\"", "")) } %{~ endif }

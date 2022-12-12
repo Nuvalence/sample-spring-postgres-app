@@ -1,0 +1,12 @@
+enable_aws_ebs_csi_driver = false
+enable_cluster_autoscaler = false
+enable_argocd             = false
+enable_argocd_oauth       = false
+enable_keda               = false
+enable_external_dns = true
+local_directory_path      = "../.."
+apps_by_workspace         = true
+app_directory_path        = "apps"
+charts_directory          = "bootstrap/charts"
+create_bootstrap_app_of_apps = true
+global_git_repo = "https://github.com/dahendel/sample-spring-postgres-app"

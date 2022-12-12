@@ -4,19 +4,18 @@
 
 replicaCount: 1
 
-service:
-    image:
-      repository: nginx
-      pullPolicy: IfNotPresent
-      # Overrides the image tag whose default is the chart appVersion.
-      tag: ""
+image:
+    repository: dahendel/nuvalence-app
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: latest
 
 postgres:
     image:
-      repository: nginx
+      repository: postgres
       pullPolicy: IfNotPresent
       # Overrides the image tag whose default is the chart appVersion.
-      tag: ""
+      tag:
 
 imagePullSecrets: []
 nameOverride: ""
@@ -84,7 +83,5 @@ autoscaling:
   # targetMemoryUtilizationPercentage: 80
 
 nodeSelector: {}
-
 tolerations: []
-
 affinity: {}
